@@ -1,0 +1,9 @@
+Package: snippets
+Version: 0.1-0
+Title: Code snippets, mostly visualization-related
+Author: Simon Urbanek <simon.urbanek@r-project.org>
+Maintainer: Simon Urbanek <simon.urbanek@r-project.org>
+Depends: R (>= 2.0.0)
+Description: This package collects code snippets that I have written for one reason or another and are deemed useful enough to be shared. Most of them are related to visualization.
+License: MIT
+URL: http://www.rforge.net/snippets/

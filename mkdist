@@ -1,0 +1,25 @@
+#!/bin/sh
+
+PNAME=snippets
+SWD=`pwd`
+VER=`sed -n 's/Version: \(.*\)/\1/p' DESCRIPTION`
+echo "Removing previous dist ..."
+rm -rf /tmp/${PNAME}
+echo "Copying package base ..."
+cp -pR ../${PNAME} /tmp
+rm -f /tmp/${PNAME}/mkdist
+
+cd /tmp/${PNAME}
+
+echo "Removing CVS and backup stuff ..."
+find . -name CVS -o -name .svn | xargs rm -rf
+find . -name \*~ | xargs rm -f
+
+echo "Creating package ..."
+cd ..
+tar fcz ${PNAME}_${VER}.tar.gz ${PNAME}
+cd ${SWD}
+cp /tmp/${PNAME}_${VER}.tar.gz ..
+rm -rf /tmp/${PNAME}
+echo "Done."
+ls -l ../${PNAME}_${VER}.tar.gz
