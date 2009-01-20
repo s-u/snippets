@@ -9,18 +9,18 @@
   Flexible quantitative color schemes
 }
 \description{
-  \code{col.base} is the base for all other functions and allow full
+  \code{col.base} is the base for all other functions and allows full
   flexibility in defining arbitrary quantitative color schemes.
 
   \code{col.bbr} provides blue-black-red diverging color scheme
-  (suitable for text and borderless glyphs on white background)
+  (suitable for text and borderless glyphs on white background).
 
   \code{col.bwr} provides blue-white-red diverging color scheme
-  (suitable for maps and gryphs with borders)
+  (suitable for maps and gryphs with borders).
 
-  \code{col.br} provides blue-red color scheme
+  \code{col.br} provides blue-red color scheme.
 
-  \code{col.bw} provides black-white color scheme
+  \code{col.bw} provides black-white color scheme.
 
   \code{col.q} returns transformed quantity between 0 and 1 for each
   datapoint (suitable for pass-though to other color
@@ -71,6 +71,8 @@ col.q   (x, alpha=1, lim=c(0, 1), center = mean(lim), fit=FALSE,
   return a vector of colors as created by the \code{rgb} function.
 }
 %\details{
+%  The functions in this section allow to map data values to colors in
+%  a contolled fashion.
 %}
 %\seealso{
 %  \code{\link{.jcall}}, \code{\link{.jnull}}

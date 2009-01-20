@@ -34,6 +34,20 @@ cloud(w, col, yspace=1.3, xspace=0.01, minh=0, ...)
 %\seealso{
 %  \code{\link{.jcall}}, \code{\link{.jnull}}
 %}
-%\examples{
-%}
+\examples{
+# a really silly one
+words <- c(apple=10, pie=14, orange=5, fruit=4)
+cloud(words)
+
+# or with more words - take the license for example
+r <- paste(readLines(file.path(R.home(),"COPYING")), collapse=' ')
+r <- gsub("[\f\t.,;:`'\\\\\\"\\\\(\\\\)<>]+", " ", r)
+w <- tolower(strsplit(r, " +")[[1]])
+cloud(sqrt(table(w)))
+
+# remove infrequent words
+wt <- table(w)
+wt <- log(wt[wt > 8])
+cloud(wt, col = col.br(wt, fit=TRUE))
+}
 \keyword{interface}
