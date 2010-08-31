@@ -1,0 +1,7 @@
+0.1-0	(under development)
+   o	snippets are being collected:
+   	 * cloud() - world cloud plot
+	 * col.bwr() and friends - quantitative color scales
+	 * osmap() - draw Open Street Map tiles
+	 * gpx() - generate GPX (GPS Exchange Format) data
+
