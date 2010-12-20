@@ -4,4 +4,5 @@
 	 * col.bwr() and friends - quantitative color scales
 	 * osmap() - draw Open Street Map tiles
 	 * gpx() - generate GPX (GPS Exchange Format) data
+	 * add.layout(), add.labels() - non-overlapping layout
 
