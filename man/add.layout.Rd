@@ -29,6 +29,7 @@ add.labels(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...)
   \item{as}{angle step for the placement algorithm}
   \item{l}{layout to add to or \code{NULL} if a new layout is to be
     created}
+  \item{txt}{text labels to add}
   \item{adj}{adjustment of the text position with respect to the
     supplied points (see \code{adj} in \code{link{text}})}
   \item{mar}{additional margins around the text (relative to the width
@@ -73,7 +74,7 @@ x = rnorm(100)
 y = rnorm(100)
 txt = sprintf("%.2f", rnorm(100))
 plot(x, y, pch=3, col=2)
-l = add.labels(x, y, txt, adj=0.5, mar=0.2, rs=0.01)
+l = add.labels(x, y, txt, mar=0.2)
 rect(l$x, l$y, l$x + l$w, l$y + l$h, col="#00000020", border=NA)
 text(l$lx, l$ly, txt, col=4)
 segments(x, y, l$lx, l$ly, col=3)

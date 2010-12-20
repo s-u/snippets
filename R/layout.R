@@ -47,12 +47,8 @@ add.labels = function(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...) {
     w = w * (1 + mar)
     h = h * (1 + mar)
   }
-  dx = 0
-  dy = 0
-  if (!missing(adj)) {
-    dx = adj[1] * w
-    dy = ifelse(length(adj) > 1, adj[2], adj[1]) * h
-  }
+  dx = adj[1] * w
+  dy = ifelse(length(adj) > 1, adj[2], adj[1]) * h
   bx = x - dx
   by = y - dy
   l = add.layout(bx, by, w, h, ...)
