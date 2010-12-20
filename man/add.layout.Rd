@@ -72,7 +72,7 @@ add.labels(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...)
 \examples{
 x = rnorm(100)
 y = rnorm(100)
-txt = sprintf("%.2f", rnorm(100))
+txt = sprintf("\%.2f", rnorm(100))
 plot(x, y, pch=3, col=2)
 l = add.labels(x, y, txt, mar=0.2)
 rect(l$x, l$y, l$x + l$w, l$y + l$h, col="#00000020", border=NA)
