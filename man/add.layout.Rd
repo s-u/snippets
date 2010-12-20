@@ -19,7 +19,7 @@ add.labels(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...)
 \arguments{
   \item{x}{x coordinates of the points to add. For rectangles it is the
     left edge.}
-  \item{y}{y coordinates of the points to add. For rectangled it is the
+  \item{y}{y coordinates of the points to add. For rectangles it is the
     bottom edge.}
   \item{w}{width of the rectangles (optional for labels where it
     defaults to the label widths)}
@@ -31,7 +31,7 @@ add.labels(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...)
     created}
   \item{txt}{text labels to add}
   \item{adj}{adjustment of the text position with respect to the
-    supplied points (see \code{adj} in \code{link{text}})}
+    supplied points (see \code{adj} in \code{\link{text}})}
   \item{mar}{additional margins around the text (relative to the width
     or height). If present, it will be recycled to length two for
     horizontal and vertical margins respectively.}
@@ -52,7 +52,7 @@ add.labels(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...)
   \code{y} coordinates will differ accordingly.
 
   If \code{l} is specified on input, it is expected to be
-  \code{box.layput} as well and the layout is extended by adding the
+  \code{box.layout} as well and the layout is extended by adding the
   rectangles defined in the arguments.
 
   \code{add.labels} returns an object of the class \code{label.layout}

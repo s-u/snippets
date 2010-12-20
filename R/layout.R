@@ -52,8 +52,17 @@ add.labels = function(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...) {
   bx = x - dx
   by = y - dy
   l = add.layout(bx, by, w, h, ...)
-  l$lx = l$x + dx
-  l$ly = l$y + dy
+  if (is.null(l$lx)) { ## lx not there so we're dealing with box.layout
+    if (length(l$x) != length(dx))
+      stop("add.labels() cannot be mixed with a previous output of add.layout()")
+    l$lx = l$x + dx
+    l$ly = l$y + dy
+  } else { ## lx is there so it's label.layout - need to add lx,ly
+    if (length(l$lx) + length(dx) != length(l$x))
+      stop("sizes mismatch in the layout object - labels layout is inconsistent")
+    l$lx = c(l$lx, l$x[-(1:length(l$lx))] + dx)
+    l$ly = c(l$ly, l$y[-(1:length(l$ly))] + dy)
+  }
   class(l) = c("label.layout", "box.layout")
   l
 }
