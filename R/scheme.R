@@ -25,7 +25,6 @@ mfcol <- function(rows, cols, n, asp=1, add=FALSE, times=NA, fig = if(add) par("
     fig <- c(0,1,0,1)
     par(mfrow=c(1,1))
   } else fig <- par("fig")
-    .scheme.env[[dev.id]] <- li
   if (length(rows) == 1L) rows <- rep(1, rows)
   if (length(cols) == 1L) cols <- rep(1, cols)
   rows <- rows / sum(rows)
@@ -56,7 +55,7 @@ setup.figure <- function(scheme) {
   UseMethod("setup.figure")
 }
 
-setup.figure.gridScheme <- function(scheme, row, col) {
+.setup.figure.gridScheme <- function(scheme, row, col) {
   if (missing(row)) row <- scheme$row
   if (missing(col)) col <- scheme$col
   pf <- scheme$fig
@@ -73,7 +72,7 @@ setup.figure.gridRowScheme <- function(scheme) {
   cols <- length(scheme$cols)
   col <- 1L + ((index - 1L) %% cols)
   row <- 1L + as.integer((index - 1L) / cols)
-  setup.figure.gridScheme(scheme, row, col)
+  .setup.figure.gridScheme(scheme, row, col)
 }
 
 setup.figure.gridColScheme <- function(scheme) {
@@ -81,7 +80,7 @@ setup.figure.gridColScheme <- function(scheme) {
   rows <- length(scheme$rows)
   row <- 1L + ((index - 1L) %% rows)
   col <- 1L + as.integer((index - 1L) / rows)
-  setup.figure.gridScheme(scheme, row, col)
+  .setup.figure.gridScheme(scheme, row, col)
 }
 
 advance.scheme <- function() {
