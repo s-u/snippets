@@ -6,3 +6,4 @@
 	 * gpx() - generate GPX (GPS Exchange Format) data
 	 * add.layout(), add.labels() - non-overlapping layout
          * data2screen(), screen2data() - coordinates conversion
+	 * fd() - simple 2d fluctuation diagram
