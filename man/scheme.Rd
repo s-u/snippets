@@ -31,8 +31,11 @@ pop.scheme()
 %\value{
 %}
 \author{Simon Urbanek}
-%\note{
-%}
+\note{``scheme'' is not a typo but rather a play on the meaning of
+  the word `scheme' in the context of something that may be called
+  `schema' (a grand plan of figure layout if you will) -- the former is
+  an evolution of the latter word from its original form, anyway.
+}
 \seealso{
 \code{\link{mfrow}}, \code{\link{mfcol}}
 }
