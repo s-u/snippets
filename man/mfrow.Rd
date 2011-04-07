@@ -11,8 +11,10 @@
   simple commands.  
 }
 \usage{
-mfrow(rows, cols, n, asp = 1, add = FALSE, times = NA, fig = if (add) par("fig") else c(0, 1, 0, 1), ...)
-mfcol(rows, cols, n, asp = 1, add = FALSE, times = NA, fig = if (add) par("fig") else c(0, 1, 0, 1), ...)
+mfrow(rows, cols, n, asp = 1, add = FALSE, times = NA,
+      fig = if (add) par("fig") else c(0, 1, 0, 1), \dots)
+mfcol(rows, cols, n, asp = 1, add = FALSE, times = NA,
+      fig = if (add) par("fig") else c(0, 1, 0, 1), \dots)
 }
 \arguments{
   \item{rows}{either a numeric vector of length one defining the number
@@ -43,7 +45,7 @@ mfcol(rows, cols, n, asp = 1, add = FALSE, times = NA, fig = if (add) par("fig")
 \details{
   \code{mfrow} and \code{mfcol} have a similar effect as the
   corresponding graphics parameters, but they are more flexible
-  (allowing individual withd and heights) and construct a scheme that
+  (allowing individual withs and heights) and construct a scheme that
   can be used recursively with \code{add = TRUE}.
 
   Note that the scheme layout method is incompatible with all other
@@ -65,10 +67,26 @@ mfcol(rows, cols, n, asp = 1, add = FALSE, times = NA, fig = if (add) par("fig")
 }
 %\references{
 %}
-%\author{
-%}
+\author{
+  Simon Urbanek
+}
 %\seealso{
 %}
-%\examples{
-%}
+\examples{
+  ## one advantage is that you can simply specify the number of plots
+  ## the layout will then depend on the aspect ratio of the device
+  mfrow(n=8)
+  par(mar=c(2,2,0,0))
+  for (i in 1:8) plot(rnorm(100), rnorm(100), col=i, pch=19)
+
+  ## or you can create recursive layouts
+  mfrow(2, 4)                  ## 4 x 2 base grid
+  mfrow(c(1, 4), 1, add=TRUE)  ## each cell split asymetrically 1:4
+
+  par(mar=rep(0,4))
+  for (i in 1:8) {
+     plot(0:1, 0:1, type='n', axes=FALSE); rect(0,0,1,1); text(0.5, 0.5, i)
+     plot(rnorm(100), rnorm(100), col=i, pch=19, axes=FALSE)
+  }
+}
 \keyword{hplot}

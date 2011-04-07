@@ -16,18 +16,21 @@ mfcol <- function(rows, cols, n, asp=1, add=FALSE, times=NA, fig = if(add) par("
     cols <- t[a]
     rows <- rev(t)[a]    
   }
-  if (length(rows) == 1L) rows <- rep(1, rows)
-  if (length(cols) == 1L) cols <- rep(1, cols)
-  rows <- rows / sum(rows)
-  cols <- cols / sum(cols)
+  if (missing(rows)) rows <- 1L
+  if (missing(cols)) cols <- 1L
   dev.id <- paste(names(dev.cur()), dev.cur(), sep='/')
-  if (isTRUE(times > 1e6)) times <- NA
   if (!isTRUE(add)) {
     .scheme.env[[dev.id]] <- NULL
     .scheme.env[[paste(dev.id,"reset")]] <- TRUE
     fig <- c(0,1,0,1)
     par(mfrow=c(1,1))
   } else fig <- par("fig")
+    .scheme.env[[dev.id]] <- li
+  if (length(rows) == 1L) rows <- rep(1, rows)
+  if (length(cols) == 1L) cols <- rep(1, cols)
+  rows <- rows / sum(rows)
+  cols <- cols / sum(cols)
+  if (isTRUE(times > 1e6)) times <- NA
 
   pars <- list(...)
   if (!length(pars)) pars <- NULL
