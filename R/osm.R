@@ -27,6 +27,8 @@ osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir) {
   if (zoom < 0) zoom <- 0L
   zoom <- as.integer(zoom)
   cache.dir <- if (missing(cache.dir)) NULL else path.expand(cache.dir)
+  # tempfile is unreliable when used in multicore so force a random name
+  my.tmp <- tempfile(sprintf("R.tile.%f.",runif(1)))
   get.tile <- function(x, y, zoom) {
     cached <- FALSE
     if (!is.null(cache.dir)) {
@@ -37,7 +39,7 @@ osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir) {
         dir.create(paste(cache.dir, "/", zoom, sep=''), recursive=TRUE)
       tmp <- cache.fn
       cached <- TRUE
-    } else tmp <- tempfile("R.tile")
+    } else tmp <- my.tmp
     url <- paste(tiles.url, zoom, "/", x, "/", y, ".png", sep='')
     if (download.file(url , tmp, quiet=TRUE) != 0L)
       stop("unable to download tile ", url)
