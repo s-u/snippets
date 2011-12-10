@@ -1,7 +1,7 @@
-add.layout = function(x, y, w, h, rs = 0.01, as = 0.22, l = NULL) {
+add.layout = function(x, y, w, h, rs = 0.01, as = 0.22, ri = 0, ai = 0, l = NULL) {
   add.one = function(l, x, y, w, h) {
-    r = 0
-    a = 0
+    r = ri
+    a = ai
     while (TRUE) {
       cx = x + sin(a) * r
       cy = y + cos(a) * r

@@ -13,7 +13,7 @@ layout suitable for labels allowing to adjust the placement of the label
 with respect to the original points and to add extra margins.
 }
 \usage{
-add.layout(x, y, w, h, rs = 0.01, as = 0.22, l = NULL)
+add.layout(x, y, w, h, rs = 0.01, as = 0.22, ri = 0, ai = 0, l = NULL)
 add.labels(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...)
 }
 \arguments{
@@ -27,6 +27,8 @@ add.labels(x, y, txt, w, h, adj = 0.5, mar = 0.1, ...)
     defaults to the label height)}
   \item{rs}{radius step for the placement algorithm}
   \item{as}{angle step for the placement algorithm}
+  \item{ri}{initial radius for the placement algorithm}
+  \item{ai}{initial angle for the placement algorithm}
   \item{l}{layout to add to or \code{NULL} if a new layout is to be
     created}
   \item{txt}{text labels to add}
