@@ -19,6 +19,7 @@ osm.xy2ll <- function(x, y, zoom=16) {
 # (requires "png" R package for readPNG and R capable of rasterImage())
 osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir) {
   if (missing(tiles.url)) tiles.url <- getOption("osm.tiles.url")
+  if (missing(cache.dir)) cache.dir <- getOption("osm.cache.dir")
   if (is.null(tiles.url)) tiles.url <- "http://a.tile.openstreetmap.org/"
   if (length(area) != 4L || !is.numeric(area)) stop("invalid area specification")
   if (missing(zoom)) # get some reasonable zoom estimation based on the covered area
@@ -26,7 +27,7 @@ osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir) {
   if (zoom > 19) zoom <- 19L
   if (zoom < 0) zoom <- 0L
   zoom <- as.integer(zoom)
-  cache.dir <- if (missing(cache.dir)) NULL else path.expand(cache.dir)
+  if (!is.null(cache.dir)) cache.dir <- path.expand(cache.dir)
   # tempfile is unreliable when used in multicore so force a random name
   my.tmp <- tempfile(sprintf("R.tile.%f.",runif(1)))
   get.tile <- function(x, y, zoom) {
