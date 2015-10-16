@@ -1,3 +1,13 @@
+0.1-1
+   o	add support for more general tiles.url in osmap() by
+	substituting %x, %y and %z in the URL for the coordinates.
+	If %x is not present in the URL then %z/%x/%y.png is
+	appended (same behavior as in previous versions).
+
+   o	auto-detect image type in osmap() and support JPEG tiles even
+	if they are tagged as PNG by the tile server
+
+
 0.1-0	(under development)
    o	snippets are being collected:
    	 * cloud() - world cloud plot

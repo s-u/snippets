@@ -16,6 +16,7 @@ osm.xy2ll <- function(x, y, zoom=16) {
 
 # fill the area with OSM map (by default the area is the whole current device)
 # tiles are expected to be <zoom>/<x>-<y>.png files (and already present)
+# or the tile.url has to icnlude %x %y and %z which will be replaced by the coordinates
 # (requires "png" R package for readPNG and R capable of rasterImage())
 osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir, tile.coord=FALSE) {
   if (missing(tiles.url)) tiles.url <- getOption("osm.tiles.url")
@@ -39,6 +40,7 @@ osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir, tile.co
   if (!is.null(cache.dir)) cache.dir <- path.expand(cache.dir)
   # tempfile is unreliable when used in multicore so force a random name
   my.tmp <- tempfile(sprintf("R.tile.%f.",runif(1)))
+  fixed.url <- !isTRUE(grepl("%x", tiles.url, fixed=TRUE))
   get.tile <- function(x, y, zoom) {
     x <- x %% (2^zoom)
     y <- y %% (2^zoom)
@@ -57,12 +59,19 @@ osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir, tile.co
       tmp <- cache.fn
       cached <- TRUE
     } else tmp <- my.tmp
-    url <- paste(tiles.url, zoom, "/", x, "/", y, ".png", sep='')
-    if (download.file(url , tmp, quiet=TRUE) != 0L) {
+    url <- if (fixed.url) paste0(tiles.url, zoom, "/", x, "/", y, ".png") else gsub("%x", x, gsub("%y", y, gsub("%z", zoom, tiles.url, fixed=TRUE), fixed=TRUE), fixed=TRUE)
+    if (download.file(url , tmp, quiet=TRUE) != 0L || isTRUE(is.na(sz <- file.info(tmp)$size))) {
       warning("unable to download tile ", url)
       return (NULL)
     }
-    img <- readPNG(tmp, native=TRUE)
+    f <- file(tmp, "rb")
+    raw <- readBin(f, raw(), sz)
+    close(f)
+    img <- if (length(raw) < 32 || raw[1L] != 0x89 || raw[2L] != 0x50 || raw[3L] != 0x4E) {
+      ## not a PNG file, try JPEG since some tile servers use JPEG tagged as PNG for satellite tiles
+      if (length(grepRaw("JFIF", raw[1:32], fixed=TRUE)))
+        readJPEG(raw, native=TRUE) else stop("Invalid file format, neither PNG nor JPEG file (see ", tmp, ")")
+    } else readPNG(raw, native=TRUE)
     if (!cached) unlink(tmp)
     img
   }
