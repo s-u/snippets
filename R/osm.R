@@ -82,6 +82,10 @@ osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir, tile.co
     lo <- unlist(osm.ll2xy(area[1], area[4], zoom=zoom))
     hi <- unlist(osm.ll2xy(area[2], area[3], zoom=zoom))
   }
+  if (lo[1] > hi[1])
+      hi[1] <- hi[1] + 2^zoom
+  if (lo[2] > hi[2])
+      hi[2] <- hi[2] + 2^zoom
   lo <- as.integer(floor(lo))
   hi <- as.integer(ceiling(hi))
   ## print(lo); print(hi)
