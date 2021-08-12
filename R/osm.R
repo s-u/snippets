@@ -60,7 +60,7 @@ osmap <- function(alpha=1, zoom, area = par()$usr, tiles.url, cache.dir, tile.co
       cached <- TRUE
     } else tmp <- my.tmp
     url <- if (fixed.url) paste0(tiles.url, zoom, "/", x, "/", y, ".png") else gsub("%x", x, gsub("%y", y, gsub("%z", zoom, tiles.url, fixed=TRUE), fixed=TRUE), fixed=TRUE)
-    if (download.file(url , tmp, quiet=TRUE) != 0L || isTRUE(is.na(sz <- file.info(tmp)$size))) {
+    if (download.file(url , tmp, quiet=TRUE, mode="wb") != 0L || isTRUE(is.na(sz <- file.info(tmp)$size))) {
       warning("unable to download tile ", url)
       return (NULL)
     }
