@@ -1,6 +1,7 @@
 \name{fd}
 \alias{fd}
 \alias{fd.matrix}
+\alias{fd.table}
 \title{
 Fluctuation diagram
 }
@@ -10,6 +11,11 @@ Draws a fluctuation diagram.
 \usage{
 fd(x, ...)
 \method{fd}{matrix}(x, add = FALSE, vals = FALSE, at.x, at.y, axes = TRUE,
+frame.plot = FALSE, main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
+zmax = max(x, na.rm = TRUE), xlim, ylim, asp = 1, panel.first = NULL,
+panel.last = NULL, ann = par("ann"), col = "grey", border = "black",
+\dots)
+\method{fd}{table}(x, add = FALSE, vals = FALSE, at.x, at.y, axes = TRUE,
 frame.plot = FALSE, main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
 zmax = max(x, na.rm = TRUE), xlim, ylim, asp = 1, panel.first = NULL,
 panel.last = NULL, ann = par("ann"), col = "grey", border = "black",

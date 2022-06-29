@@ -1,6 +1,6 @@
 fd <- function(x, ...) UseMethod("fd")
 
-fd.matrix <- function(x, add=FALSE, vals=FALSE, at.x, at.y, axes=TRUE, frame.plot = FALSE, main = NULL, sub = NULL, xlab = NULL, ylab= NULL, zmax=max(x, na.rm=TRUE), xlim, ylim, asp = 1, panel.first = NULL, panel.last = NULL, ann = par("ann"), col="grey", border="black", ...) {
+fd.matrix <- fd.table <- function(x, add=FALSE, vals=FALSE, at.x, at.y, axes=TRUE, frame.plot = FALSE, main = NULL, sub = NULL, xlab = NULL, ylab= NULL, zmax=max(x, na.rm=TRUE), xlim, ylim, asp = 1, panel.first = NULL, panel.last = NULL, ann = par("ann"), col="grey", border="black", ...) {
   localAxis <- function(..., col, bg, pch, cex, lty, lwd) Axis(...)
   localBox <- function(..., col, bg, pch, cex, lty, lwd) box(...)
   localWindow <- function(..., col, bg, pch, cex, lty, lwd) plot.window(...)
